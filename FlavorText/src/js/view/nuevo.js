@@ -1,10 +1,14 @@
 class nuevo {
 
-    constructor(palabra,posx,posy,coger){
+    constructor(palabra,posx,posy,coger,r,g,b,mat){
 this.posx =posx;
 this.posy =posy;
 this.palabra =palabra;
 this.coger = coger;
+this.mat = mat;
+this.r = r
+this.g = g
+this.b = b
 
 
        
@@ -14,6 +18,7 @@ this.coger = coger;
     
         textAlign(CENTER);
         textSize(18);
+        fill(this.r,this.g, this.b)
        text(this.palabra,this.posx,this.posy);
     }
 
@@ -29,9 +34,7 @@ chas(){
     this.posy = mouseY;
 }
 
-llenar(r,g,b){
-    fill(r,g,b)
-}
+
 
           
     }

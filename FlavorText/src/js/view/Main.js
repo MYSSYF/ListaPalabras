@@ -28,7 +28,7 @@ function setup() {
             
            
             
-            word.push(new nuevo(arrayTemp[index],random(50,750),random(-1000,200))); 
+            word.push(new nuevo(arrayTemp[index],random(50,750),random(-1000,200),0,0,0)); 
            
            
         }
@@ -36,7 +36,7 @@ function setup() {
         
         for (let index = 0; index < arrayTemp2.length; index++) {
 
-            list.push(new nuevo(arrayTemp2[index],100+(index)*50,875,false)); 
+            list.push(new nuevo(arrayTemp2[index],100+index*100,875,false,0,0,0,false)); 
             
            
            
@@ -53,8 +53,8 @@ function draw() {
 
  for (let index = 0; index < word.length; index++) {
 
-  word[index].draw();
-  word[index].llenar(0,0,0);
+  word[index].draw(0,0,0);
+ 
   word[index].mover();
     
  }
@@ -62,32 +62,46 @@ function draw() {
  fill(100);
  rect(0,850,800,50); 
 encont();
-comp();
+
+
 
 
  for (let index = 0; index < 5; index++) {
- 
-    list[index].draw();
-    list[index].llenar(0,0,0);
+
+    list[index].draw(0,0,0);
+    
+    
     
     if(list[index].coger==true){
         list[index].chas();
+        if(list[index].mat==true){
+        list[index].g=250;
         
         }
+        }
+
+        
+        
+            
+            
  } 
 
-
-
+ comp();
+ 
+ noStroke();
+ fill(100);
+ rect(450,850,800,50); 
  
 }
 
 function comp () {
     
     if(pal1===pal2){
-console.log("yass");
-for (let index = 0; index < 5; index++) {
-list[index].draw();
-list[index].llenar(0,255,0);
+
+for (let index = 0; index < list.length; index++) {
+list[index].mat=true;
+
+
         }
     }
 }
@@ -103,8 +117,10 @@ pal2 = word[index].palabra
 }
 }
 
+
+
 function mousePressed() {
-    for (let index = 0; index < 5; index++) {
+    for (let index = 0; index < 4; index++) {
     if(this.mouseX<=list[index].posx+10&&this.mouseX>=list[index].posx-10&&this.mouseY<=list[index].posy+10&&this.mouseY>=list[index].posy-10){
       list[index].coger=true;
       pal1 = list[index].palabra 
@@ -115,8 +131,9 @@ function mousePressed() {
 }
 
 function mouseReleased() {
-    for (let index = 0; index < 5; index++) {
+    for (let index = 0; index < 4; index++) {
 list[index].coger=false;
+list[index].mat= false;
 pal1 = undefined;
 
 }
