@@ -28,7 +28,7 @@ function setup() {
             
            
             
-            word.push(new nuevo(arrayTemp[index],random(50,750),random(-1000,200),0,0,0)); 
+            word.push(new nuevo(arrayTemp[index],random(50,750),random(-1000,200),0,0,0,false)); 
            
            
         }
@@ -52,7 +52,7 @@ function draw() {
     
 
  for (let index = 0; index < word.length; index++) {
-
+    fill(0);
   word[index].draw(0,0,0);
  
   word[index].mover();
@@ -66,7 +66,7 @@ encont();
 
 
 
- for (let index = 0; index < 5; index++) {
+ for (let index = 0; index < 4; index++) {
 
     list[index].draw(0,0,0);
     
@@ -78,6 +78,10 @@ encont();
         list[index].g=250;
         
         }
+        if(word[index].mat==true){
+            word[index].g=250;
+            
+            }
         }
 
         
@@ -88,9 +92,7 @@ encont();
 
  comp();
  
- noStroke();
- fill(100);
- rect(450,850,800,50); 
+
  
 }
 
@@ -102,7 +104,14 @@ for (let index = 0; index < list.length; index++) {
 list[index].mat=true;
 
 
+
         }
+for (let index = 0; index < word.length; index++) {
+            word[index].mat=true;
+            
+            
+            
+                    }
     }
 }
 
@@ -134,7 +143,10 @@ function mouseReleased() {
     for (let index = 0; index < 4; index++) {
 list[index].coger=false;
 list[index].mat= false;
+word[index].mat = false;
 pal1 = undefined;
+list[index].posx =100+index*100
+list[index].posy=875
 
 }
 }
